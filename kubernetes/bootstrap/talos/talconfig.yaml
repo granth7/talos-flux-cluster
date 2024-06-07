@@ -22,7 +22,7 @@ cniConfig:
 
 nodes:
   - hostname: "talos-0"
-    ipAddress: ""
+    ipAddress: "10.0.100.10"
     installDisk: "/dev/nvme0n1"
     machineSpec:
       secureboot: true
@@ -31,12 +31,17 @@ nodes:
     networkInterfaces:
       - deviceSelector:
           hardwareAddr: "b0:0c:d1:5b:bb:d3"
-        dhcp: true
+        dhcp: false
+        addresses:
+          - "10.0.100.10/24"
+        routes:
+          - network: 0.0.0.0/0
+            gateway: "10.0.100.1"
         mtu: 1500
         vip:
           ip: "10.0.100.40"
   - hostname: "talos-1"
-    ipAddress: ""
+    ipAddress: "10.0.100.20"
     installDisk: "/dev/nvme0n1"
     machineSpec:
       secureboot: true
@@ -45,12 +50,17 @@ nodes:
     networkInterfaces:
       - deviceSelector:
           hardwareAddr: "b0:0c:d1:5a:af:00"
-        dhcp: true
+        dhcp: false
+        addresses:
+          - "10.0.100.20/24"
+        routes:
+          - network: 0.0.0.0/0
+            gateway: "10.0.100.1"
         mtu: 1500
         vip:
           ip: "10.0.100.40"
   - hostname: "talos-2"
-    ipAddress: ""
+    ipAddress: "10.0.100.30"
     installDisk: "/dev/nvme0n1"
     machineSpec:
       secureboot: true
@@ -59,7 +69,12 @@ nodes:
     networkInterfaces:
       - deviceSelector:
           hardwareAddr: "b0:0c:d1:59:b0:ac"
-        dhcp: true
+        dhcp: false
+        addresses:
+          - "10.0.100.30/24"
+        routes:
+          - network: 0.0.0.0/0
+            gateway: "10.0.100.1"
         mtu: 1500
         vip:
           ip: "10.0.100.40"
