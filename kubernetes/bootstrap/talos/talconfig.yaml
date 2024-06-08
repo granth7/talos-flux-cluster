@@ -24,9 +24,7 @@ nodes:
   - hostname: "talos-0"
     ipAddress: "10.0.100.10"
     installDisk: "/dev/nvme0n1"
-    machineSpec:
-      secureboot: true
-    talosImageURL: factory.talos.dev/installer-secureboot/376567988ad370138ad8b2698212367b8edcb69b5fd68c80be1f2ec7d603b4ba
+    talosImageURL: factory.talos.dev/installer/376567988ad370138ad8b2698212367b8edcb69b5fd68c80be1f2ec7d603b4ba
     controlPlane: true
     networkInterfaces:
       - deviceSelector:
@@ -43,9 +41,7 @@ nodes:
   - hostname: "talos-1"
     ipAddress: "10.0.100.20"
     installDisk: "/dev/nvme0n1"
-    machineSpec:
-      secureboot: true
-    talosImageURL: factory.talos.dev/installer-secureboot/376567988ad370138ad8b2698212367b8edcb69b5fd68c80be1f2ec7d603b4ba
+    talosImageURL: factory.talos.dev/installer/376567988ad370138ad8b2698212367b8edcb69b5fd68c80be1f2ec7d603b4ba
     controlPlane: true
     networkInterfaces:
       - deviceSelector:
@@ -62,9 +58,7 @@ nodes:
   - hostname: "talos-2"
     ipAddress: "10.0.100.30"
     installDisk: "/dev/nvme0n1"
-    machineSpec:
-      secureboot: true
-    talosImageURL: factory.talos.dev/installer-secureboot/376567988ad370138ad8b2698212367b8edcb69b5fd68c80be1f2ec7d603b4ba
+    talosImageURL: factory.talos.dev/installer/376567988ad370138ad8b2698212367b8edcb69b5fd68c80be1f2ec7d603b4ba
     controlPlane: true
     networkInterfaces:
       - deviceSelector:
@@ -81,20 +75,6 @@ nodes:
 
 # Global patches
 patches:
-  - # Encrypt system disk with TPM
-    |-
-    machine:
-      systemDiskEncryption:
-        ephemeral:
-          provider: luks2
-          keys:
-            - slot: 0
-              tpm: {}
-        state:
-          provider: luks2
-          keys:
-            - slot: 0
-              tpm: {}
   - "@./patches/global/cluster-discovery.yaml"
   - "@./patches/global/containerd.yaml"
   - "@./patches/global/disable-search-domain.yaml"
