@@ -1,0 +1,73 @@
+---
+# yaml-language-server: $schema=https://github.com/fluxcd-community/flux2-schemas/raw/main/helmrelease-helm-v2beta2.json
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: harbor
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: harbor
+      version: 1.15.1
+      sourceRef:
+        kind: HelmRepository
+        name: harbor
+        namespace: flux-system
+  maxHistory: 2
+  install:
+    remediation:
+      retries: 3
+  dependsOn:
+    - name: openebs
+      namespace: openebs-system
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    ingress:
+      enabled: true
+      annotations:
+        external-dns.alpha.kubernetes.io/target: internal.${SECRET_DOMAIN}
+      ingressClassName: internal
+      hosts: ["harbor.${SECRET_DOMAIN}"]
+      tls: []
+    persistence:
+      enabled: true
+      persistentVolumeClaim:
+        registry:
+          existingClaim: harbor-registry-v1
+          storageClass: openebs-hostpath
+          subPath: registry
+        chartmuseum:
+          existingClaim: harbor-registry-v1
+          storageClass: openebs-hostpath
+          subPath: chartmuseum
+
+#      imageChartStorage:
+#        type: s3
+#        s3:
+#          bucket: kubernetes-registry
+#          accesskey: ${AWS_SECRET_KEY_ID}
+#          secretkey: ${AWS_SECRET_KEY}
+#          regionendpoint: https://${SECRET_BACKUP_SERVER}
+#          rootdirectory: /prod
+
+#    # our CSI does not support ReadWriteMany so we must use Recreate on pods
+#    updateStrategy:
+#      type: Recreate
+
+    existingSecretAdminPassword: harbor-secret
+    existingSecretAdminPasswordKey: password
+    secretKey:
+    existingSecretSecretKey: harbor-encryption-secret
+
+    notary:
+      enabled: false
+
+#    nginx:
+#      podAnnotations:
+#        secret.reloader.stakater.com/reload: tls.harbor
