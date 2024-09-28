@@ -28,13 +28,15 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    tls:
+        enabled: false
     ingress:
       enabled: true
       annotations:
         external-dns.alpha.kubernetes.io/target: internal.${SECRET_DOMAIN}
       ingressClassName: internal
-      hosts: ["harbor.${SECRET_DOMAIN}"]
-      tls: []
+      hosts:
+        core: ["harbor.${SECRET_DOMAIN}"]
     persistence:
       enabled: true
       persistentVolumeClaim:
