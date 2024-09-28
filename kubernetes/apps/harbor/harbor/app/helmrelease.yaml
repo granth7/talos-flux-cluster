@@ -42,10 +42,19 @@ spec:
           existingClaim: harbor-registry-v1
           storageClass: openebs-hostpath
           subPath: registry
-        chartmuseum:
-          existingClaim: harbor-registry-v1
+        jobservice:
+          jobLog:
+            storageClass: openebs-hostpath
+            size: 1Gi
+        database:
           storageClass: openebs-hostpath
-          subPath: chartmuseum
+          size: 1Gi
+        redis:
+          storageClass: openebs-hostpath
+          size: 1Gi
+        trivy:
+          storageClass: openebs-hostpath
+          size: 5Gi
 
 #      imageChartStorage:
 #        type: s3
