@@ -11,7 +11,7 @@ spec:
       chart: etymo
       version: 1.0.0
       sourceRef:
-        kind: OCIRepository
+        kind: HelmRepository
         name: etymo
         namespace: flux-system
   install:
