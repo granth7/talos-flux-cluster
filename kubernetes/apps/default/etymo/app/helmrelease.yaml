@@ -9,10 +9,10 @@ spec:
     spec:
       chart: etymo
       version: 1.0.0
-      chartRef:
+      sourceRef:
         kind: OCIRepository
         name: etymo
-        namespace: default
+        namespace: flux-system
   install:
     remediation:
       retries: 3
