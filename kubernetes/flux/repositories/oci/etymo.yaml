@@ -5,4 +5,4 @@ metadata:
   namespace: flux-system
 spec:
   interval: 2h
-  url: oci://harbor.${SECRET_DOMAIN}/etymo
+  url: oci://harbor.${SECRET_DOMAIN}/charts/etymo
