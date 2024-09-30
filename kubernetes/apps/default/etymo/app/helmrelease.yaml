@@ -1,0 +1,22 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: etymo
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: etymo
+      version: 1.0.0
+      sourceRef:
+        kind: OCIRepository
+        name: etymo
+        namespace: default
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
