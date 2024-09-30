@@ -11,10 +11,6 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
   cancel-in-progress: true
 
-env:
-  # Setting an environment variable with the value of a configuration variable
-  SECRET_DOMAIN: ${{ secrets.SECRET_DOMAIN }}
-
 jobs:
   flux-diff:
     name: Flux Diff
@@ -51,6 +47,9 @@ jobs:
             --all-namespaces
             --sources "home-kubernetes"
             --output-file diff.patch
+        env:
+          # Setting an environment variable with the value of an environment secret
+          SECRET_DOMAIN: ${{ secrets.SECRET_DOMAIN }}
 
       - name: Generate Diff
         id: diff
