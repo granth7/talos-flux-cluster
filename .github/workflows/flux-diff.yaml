@@ -11,6 +11,10 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
   cancel-in-progress: true
 
+env:
+  # Setting an environment variable with the value of a configuration variable
+  env_var: ${{ vars.SECRET_DOMAIN }}
+
 jobs:
   flux-diff:
     name: Flux Diff
