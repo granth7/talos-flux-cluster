@@ -9,7 +9,7 @@ spec:
     spec:
       chart: etymo
       version: 1.0.0
-      sourceRef:
+      chartRef:
         kind: OCIRepository
         name: etymo
         namespace: default
