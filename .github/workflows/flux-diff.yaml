@@ -49,7 +49,7 @@ jobs:
             --output-file diff.patch
         env:
           # Setting an environment variable with the value of an environment secret
-          SECRET_DOMAIN: ${{ secrets.SECRET_DOMAIN }}
+          HELM_REPO_URL: oci://harbor.${{ secrets.SECRET_DOMAIN }}/charts
 
       - name: Generate Diff
         id: diff
