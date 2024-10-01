@@ -47,10 +47,8 @@ jobs:
             --all-namespaces
             --sources "home-kubernetes"
             --output-file diff.patch
-        env:
-          # Setting an environment variable with the value of an environment secret
-          HELM_REPO_URL: oci://harbor.${{ secrets.SECRET_DOMAIN }}/charts
-
+          HELM_REPO_URL: oci://harbor.test123/charts
+          
       - name: Generate Diff
         id: diff
         run: |
