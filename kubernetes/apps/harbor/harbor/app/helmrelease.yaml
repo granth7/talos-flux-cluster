@@ -37,8 +37,7 @@ spec:
           secretName: tls.harbor
       ingress:
         className: external
-        hosts:
-          core: harbor.${SECRET_DOMAIN}
+        hosts: ["core.${SECRET_DOMAIN}"]
         annotations:
           external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
       externalURL: https://harbor.${SECRET_DOMAIN}
