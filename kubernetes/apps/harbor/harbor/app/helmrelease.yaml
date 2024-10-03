@@ -41,6 +41,7 @@ spec:
           core: "${SECRET_REGISTRY_DOMAIN}"
         annotations:
           external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
+          external-dns.alpha.kubernetes.io/hostname: "harbor.${SECRET_DOMAIN}"
       externalURL: "https://${SECRET_REGISTRY_DOMAIN}"
     ipFamily:
       ipv6:
