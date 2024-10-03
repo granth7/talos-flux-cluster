@@ -29,17 +29,19 @@ spec:
     keepHistory: false
   values:
     expose:
-      type: loadBalancer
+      type: ingress
       tls:
         enabled: true
         certSource: secret
         secret:
           secretName: tls.harbor
-      loadBalancer:
-        name: harbor
+      ingress:
+        className: external
+        hosts:
+          core: harbor.${SECRET_DOMAIN}
         annotations:
-          external-dns.alpha.kubernetes.io/hostname: "harbor.${SECRET_DOMAIN}"
-    externalURL: https://harbor.${SECRET_DOMAIN}
+          external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
+      externalURL: https://harbor.${SECRET_DOMAIN}
     ipFamily:
       ipv6:
         enabled: false
