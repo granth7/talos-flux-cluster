@@ -36,7 +36,7 @@ spec:
         secret:
           secretName: tls.harbor
       ingress:
-        ingressClassName: internal
+        ingressClass: internal
         hosts:
           core: harbor.${SECRET_DOMAIN}
         annotations:
