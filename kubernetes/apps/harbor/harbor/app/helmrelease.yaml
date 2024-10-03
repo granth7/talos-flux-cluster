@@ -41,7 +41,7 @@ spec:
           core: harbor.${SECRET_DOMAIN}
         annotations:
           external-dns.alpha.kubernetes.io/target: internal.${SECRET_DOMAIN}
-      externalURL: "https://harbor.${SECRET_DOMAIN}"
+    externalURL: "https://harbor.${SECRET_DOMAIN}"
     ipFamily:
       ipv6:
         enabled: false
