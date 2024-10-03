@@ -36,13 +36,12 @@ spec:
         secret:
           secretName: tls.harbor
       ingress:
-        className: external
+        ingressClassName: internal
         hosts:
-          core: "${SECRET_REGISTRY_DOMAIN}"
+          core: harbor.${SECRET_DOMAIN}
         annotations:
-          external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
-          external-dns.alpha.kubernetes.io/hostname: "harbor.${SECRET_DOMAIN}"
-      externalURL: "https://${SECRET_REGISTRY_DOMAIN}"
+          external-dns.alpha.kubernetes.io/target: internal.${SECRET_DOMAIN}
+      externalURL: "https://harbor.${SECRET_DOMAIN}"
     ipFamily:
       ipv6:
         enabled: false
