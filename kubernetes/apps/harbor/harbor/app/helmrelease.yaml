@@ -31,10 +31,7 @@ spec:
     expose:
       type: ingress
       tls:
-        enabled: true
-        certSource: secret
-        secret:
-          secretName: tls.harbor
+        enabled: false
       ingress:
         ingressClass: internal
         hosts:
