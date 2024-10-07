@@ -31,7 +31,10 @@ spec:
     expose:
       type: ingress
       tls:
-        enabled: false
+        enabled: true
+        certSource: secret
+        secret:
+          secretName: tls.harbor
       ingress:
         ingressClass: internal
         hosts:
@@ -87,6 +90,6 @@ spec:
     notary:
       enabled: false
 
-    # nginx:
-    #   podAnnotations:
-    #     secret.reloader.stakater.com/reload: tls.harbor
+    nginx:
+      podAnnotations:
+        secret.reloader.stakater.com/reload: tls.harbor
