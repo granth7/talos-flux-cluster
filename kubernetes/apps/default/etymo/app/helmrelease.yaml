@@ -22,9 +22,10 @@ spec:
     remediation:
       retries: 3
   values:
-    ingress:
-      enabled: true
-      annotations:
-        external-dns.alpha.kubernetes.io/target: internal.${SECRET_DOMAIN}
-      ingressClassName: internal
-      hosts: ["etymo.${SECRET_DOMAIN}"]
+    webfrontend:
+      ingress:
+        enabled: true
+        annotations:
+          external-dns.alpha.kubernetes.io/target: internal.${SECRET_DOMAIN}
+        ingressClassName: internal
+        hosts: ["etymo.${SECRET_DOMAIN}"]
