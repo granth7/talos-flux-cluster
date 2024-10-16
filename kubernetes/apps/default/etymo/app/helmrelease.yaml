@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: etymo
-      version: 0.0.1-118
+      version: 0.0.1-120
       sourceRef:
         kind: HelmRepository
         name: etymo
@@ -30,5 +30,4 @@ spec:
             external-dns.alpha.kubernetes.io/target: internal.${SECRET_DOMAIN}
           ingressClassName: internal
           hosts: ["etymo.${SECRET_DOMAIN}"]
-          pathType: Prefix
         externalUrl: "https://etymo.${SECRET_DOMAIN}/"
