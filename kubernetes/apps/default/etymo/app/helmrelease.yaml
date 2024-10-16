@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: etymo
-      version: 0.0.1-120
+      version: 0.0.1-139
       sourceRef:
         kind: HelmRepository
         name: etymo
@@ -31,3 +31,4 @@ spec:
           ingressClassName: internal
           hosts: ["etymo.${SECRET_DOMAIN}"]
         externalUrl: "https://etymo.${SECRET_DOMAIN}/"
+        
