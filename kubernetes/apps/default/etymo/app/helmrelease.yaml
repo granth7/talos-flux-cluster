@@ -31,4 +31,6 @@ spec:
           ingressClassName: external
           hosts: ["etymo.${SECRET_DOMAIN}"]
         externalUrl: "https://etymo.${SECRET_DOMAIN}/"
-        
+    secrets:
+      connectionStrings:
+        existingPostgres: postgres-connection-string-secret/ConnectionStrings__existingPostgres
