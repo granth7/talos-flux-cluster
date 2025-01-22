@@ -31,6 +31,18 @@ spec:
           ingressClassName: external
           hosts: ["etymo.${SECRET_DOMAIN}"]
         externalUrl: "https://etymo.${SECRET_DOMAIN}/"
+      keycloak:
+        ingress:
+          enabled: true
+          annotations:
+            cert-manager.io/cluster-issuer: "letsencrypt-staging"
+            external-dns.alpha.kubernetes.io/target: internal.${SECRET_DOMAIN}
+          ingressClassName: internal
+          hosts: ["sso.etymo.${SECRET_DOMAIN}"]
+          tls:
+            - hosts:
+                - "sso.etymo.${SECRET_DOMAIN}"
+              secretName: "tls.keycloak"
     secrets:
       connectionStrings:
         existingPostgres: postgres-connection-string-secret/ConnectionStrings__existingPostgres
