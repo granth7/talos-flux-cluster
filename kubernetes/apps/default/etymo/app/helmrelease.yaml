@@ -36,8 +36,9 @@ spec:
           enabled: true
           annotations:
             cert-manager.io/cluster-issuer: "letsencrypt-production"
-            external-dns.alpha.kubernetes.io/target: internal.${SECRET_DOMAIN}
-          ingressClassName: internal
+            nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+            external-dns.alpha.kubernetes.io/target: external.${SECRET_DOMAIN}
+          ingressClassName: external
           hosts: ["sso.etymo.${SECRET_DOMAIN}"]
           tls:
             - hosts:
