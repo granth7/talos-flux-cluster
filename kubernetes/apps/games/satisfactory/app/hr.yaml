@@ -47,7 +47,7 @@ spec:
           app:
             image:
               repository: registry.skysolutions.fi/ghcr.io/wolveix/satisfactory-server
-              tag: v1.9.1
+              tag: v1.9.5
             env:
               TZ: "America/Los_Angeles"
               ROOTLESS: "true"
