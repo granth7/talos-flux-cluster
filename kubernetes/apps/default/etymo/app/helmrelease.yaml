@@ -39,10 +39,10 @@ spec:
             nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
             external-dns.alpha.kubernetes.io/target: external.${SECRET_DOMAIN}
           ingressClassName: external
-          hosts: ["sso.etymo.${SECRET_DOMAIN}"]
+          hosts: ["sso.${SECRET_DOMAIN}"]
           tls:
             - hosts:
-                - "sso.etymo.${SECRET_DOMAIN}"
+                - "sso.${SECRET_DOMAIN}"
               secretName: "tls.keycloak"
     secrets:
       connectionStrings:
