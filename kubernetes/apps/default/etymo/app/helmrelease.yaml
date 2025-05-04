@@ -44,6 +44,11 @@ spec:
             - hosts:
                 - "sso.${SECRET_DOMAIN}"
               secretName: "tls.keycloak"
+    apiservice:
+      tls:
+        enabled: true
+        issuer: "letsencrypt-production"
+        secretName: "tls.apiservice"
     secrets:
       connectionStrings:
         existingPostgres: postgres-connection-string-secret/ConnectionStrings__existingPostgres
