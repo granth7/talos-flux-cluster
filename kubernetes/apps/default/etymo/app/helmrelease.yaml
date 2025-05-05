@@ -47,7 +47,7 @@ spec:
     apiservice:
       tls:
         enabled: true
-        issuer: "letsencrypt-production"
+        issuer: "selfsigned-issuer"
         secretName: "tls.apiservice"
     secrets:
       connectionStrings:
