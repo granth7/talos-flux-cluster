@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: etymo
-      version: 0.0.1-442
+      version: 0.0.1-446
       sourceRef:
         kind: HelmRepository
         name: etymo
