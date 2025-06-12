@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: external-dns
-      version: 1.15.2
+      version: 1.16.0
       sourceRef:
         kind: HelmRepository
         name: external-dns
@@ -24,25 +24,29 @@ spec:
       strategy: rollback
       retries: 3
   values:
-    fullnameOverride: *app
-    provider: cloudflare
-    env:
-      - name: CF_API_TOKEN
-        valueFrom:
-          secretKeyRef:
-            name: external-dns-secret
-            key: api-token
+    nameOverride: *app
+    provider:
+      name: cloudflare
+    cloudflare:
+      apiToken:
+        secretRef:
+          name: external-dns-secret
+          key: api-token
+      proxied: true
+
     extraArgs:
       - --ingress-class=external
-      - --cloudflare-proxied
       - --crd-source-apiversion=externaldns.k8s.io/v1alpha1
       - --crd-source-kind=DNSEndpoint
+
     policy: sync
     sources: ["crd", "ingress"]
     txtPrefix: k8s.
     txtOwnerId: default
     domainFilters: ["${SECRET_DOMAIN}"]
+
     serviceMonitor:
       enabled: true
+
     podAnnotations:
       secret.reloader.stakater.com/reload: external-dns-secret
