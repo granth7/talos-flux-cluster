@@ -98,7 +98,10 @@ spec:
             enabled: true
             port: 7777
             protocol: TCP
-
+          game-tcp-2:
+            enabled: true
+            port: 8888
+            protocol: TCP
     persistence:
       config:
         accessMode: ReadWriteOnce
